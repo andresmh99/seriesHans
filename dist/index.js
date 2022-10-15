@@ -9,6 +9,12 @@ const defaultRoutes_1 = __importDefault(require("./routes/defaultRoutes"));
 const series_routes_1 = __importDefault(require("./routes/series.routes"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const server = new server_1.default();
+server.app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requeted-With,content-type');
+    next();
+});
 server.app.use(body_parser_1.default.json());
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
 server.app.use('/', defaultRoutes_1.default);
